@@ -1,9 +1,13 @@
 const data = require('./data')
 
+const transformStudent = (student) =>{
+  const { english, social, science}  = student.marks
+  return `${student.id}, ${student.name}, ${english} ${social} ${science}`
+}
+
 const main = () => {
   data.map((student) => {
-    const marks = student.marks
-    console.log(`${student.id}, ${student.name}, English: ${marks.english}`)
+    console.log(transformStudent(student))
   })
 }
 

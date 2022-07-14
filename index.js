@@ -7,7 +7,6 @@ const transformStudent = (student) =>{
 
 const logResult = (result) => console.log(result)
 
-
 const main = () => {
   data.map(transformStudent).map(logResult)
 }

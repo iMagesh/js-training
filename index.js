@@ -31,16 +31,7 @@ const generateRank = (students) => {
 
 const displayStudentMarkList = (students) => {
   // students.map(transformStudent).map(logResult)
-  const transformed = students.map((student) => {
-    const { marks }  = student
-    delete student.marks
-    return {...student, 
-      ...Object.keys(marks)
-      .reduce((hash, subject) => {
-        hash[subject] = marks[subject]
-        return hash
-      }, {})}; 
-  })
+  const transformed = students.map(({marks, ...rest}) => ({ ...rest, ...marks }))
   console.table(transformed)
 }
 

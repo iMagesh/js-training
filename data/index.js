@@ -6,7 +6,7 @@ const students = [
     marks: {
       english: 100,
       science: 100,
-      social: 100,
+      social: 39,
     }
   },
    {

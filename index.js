@@ -1,27 +1,26 @@
 const data = require('./data')
 
-const calculateTotal = (student) => {
-  const marks = Object.values(student.marks)
-  const total = marks.reduce((mark, value) => value + mark , 0)
-  return { ...student, total }
-}
-
-const refactorCalculateTotal = (student) => 
-  ({
-    ...student, 
-    total: Object.values(student.marks).reduce((mark, value) => value + mark, 0) 
-  })
+const processMarkSheet = (student) => 
+  {
+    const marks = Object.values(student.marks)
+    const result = marks.sort((a,b) => a - b  )[0] >= 40 ? 'Pass' : 'Fail';
+    return ({
+      ...student,
+      total: marks.reduce((mark, value) => value + mark, 0),
+      result
+    })
+  }
  
 const transformStudent = (student) =>{
-  const { id, name, total, marks: {english, social, science} }  = student
-  return `${id}, ${name}, ${english} ${social} ${science}: ${total}`
+  const { id, name, total, result, marks: {english, social, science} }  = student
+  return `${id}, ${name}, ${english} ${social} ${science}: ${total} ${result}`
 }
 
 const logResult = (result) => console.log(result)
 
 const main = () => {
   data
-    .map(refactorCalculateTotal)
+    .map(processMarkSheet)
     .map(transformStudent)
     .map(logResult)
 }

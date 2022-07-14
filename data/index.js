@@ -13,7 +13,7 @@ const students = [
     id: 2,
     name: 'mani',
     marks: {
-      english: 80,
+      english: 50,
       science: 75,
       social: 89,
     }

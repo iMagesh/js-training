@@ -5,10 +5,11 @@ const transformStudent = (student) =>{
   return `${student.id}, ${student.name}, ${english} ${social} ${science}`
 }
 
+const logResult = (result) => console.log(result)
+
+
 const main = () => {
-  data.map((student) => {
-    console.log(transformStudent(student))
-  })
+  data.map(transformStudent).map(logResult)
 }
 
 main()

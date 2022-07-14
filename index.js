@@ -31,18 +31,16 @@ const generateRank = (students) => {
 
 const displayStudentMarkList = (students) => {
   // students.map(transformStudent).map(logResult)
-  const transformed = students.map((acc, {id, ...student}, index) => {
+  const transformed = students.map((student) => {
     const { marks }  = student
     delete student.marks
-    acc[index] = {...student, 
+    return {...student, 
       ...Object.keys(marks)
       .reduce((hash, subject) => {
         hash[subject] = marks[subject]
         return hash
       }, {})}; 
-    return acc
-  }
-  , {})
+  })
   console.table(transformed)
 }
 

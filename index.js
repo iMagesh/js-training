@@ -17,7 +17,7 @@ const transformStudent = (student) =>{
     ${total} ${isPassed ? 'Pass' : 'Fail'} Rank: ${rank || 'F'}`
 }
 
-const logResult = (result) => console.log(result)
+const logResult = (result) => console.table(result)
 
 const processStudentMark = (students) => students.map(processMarkSheet)
 
@@ -30,7 +30,20 @@ const generateRank = (students) => {
 }
 
 const displayStudentMarkList = (students) => {
-  students.map(transformStudent).map(logResult)
+  // students.map(transformStudent).map(logResult)
+  const transformed = students.map((acc, {id, ...student}, index) => {
+    const { marks }  = student
+    delete student.marks
+    acc[index] = {...student, 
+      ...Object.keys(marks)
+      .reduce((hash, subject) => {
+        hash[subject] = marks[subject]
+        return hash
+      }, {})}; 
+    return acc
+  }
+  , {})
+  console.table(transformed)
 }
 
 const main = () => {

@@ -3,7 +3,7 @@ const data = require('./data')
 const processMarkSheet = (student) => 
   {
     const marks = Object.values(student.marks)
-    const result = marks.sort((a,b) => a - b  )[0] >= 40 ? 'Pass' : 'Fail';
+    const result = Math.min(...marks) >= 40 ? 'Pass' : 'Fail';
     return ({
       ...student,
       total: marks.reduce((mark, value) => value + mark, 0),

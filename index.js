@@ -11,7 +11,7 @@ const formatStudent = ({isPassed, marks, ...rest}) => {
   }, {})
 }
 
-const displayStudentMarkListTable = (students) => {
+const printStudentsMarkListTable = (students) => {
   const transformedStudents = students.map(formatStudent)
   console.table(transformedStudents)
 }
@@ -42,7 +42,7 @@ const processStudentMarks = (students) => students.map(processMarkSheet)
 const main = (students) => {
   const processedStudentReports = processStudentMarks(students)
   const processedRanksData = generateStudentsRank(processedStudentReports)
-  displayStudentMarkListTable(processedRanksData)
+  printStudentsMarkListTable(processedRanksData)
 }
 
 main(data)

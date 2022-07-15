@@ -4,8 +4,8 @@ const capitalizeString = (string) => string.charAt(0).toUpperCase() + string.sli
 
 const formatStudent = ({isPassed, marks, ...rest}) => {
   const student = {...rest, ...marks, result: isPassed ? 'Pass' : 'Fail'}
-
-  return Object.keys(student).reduce((acc, key) => {
+  const studentObjectKeys = Object.keys(student)
+  return studentObjectKeys.reduce((acc, key) => {
     acc[capitalizeString(key)] = student[key]
     return acc
   }, {})

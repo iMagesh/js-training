@@ -1,8 +1,20 @@
 const data = require('./data')
 
+const capitalizeString = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+const formatStudent = ({marks, ...rest}) => {
+  const student = {...rest, ...marks}
+  return Object.keys(student).reduce((obj, key) => {
+    obj[capitalizeString(key)] = student[key]
+    return obj
+  }, {})
+}
+
 const displayStudentMarkListTable = (students) => {
-  const transformed = students.map(({marks, ...rest}) => ({ ...rest, ...marks }))
-  console.table(transformed)
+  const transformedStudents = students.map(formatStudent)
+  console.table(transformedStudents)
 }
 
 const generateRank = (students) => {

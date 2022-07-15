@@ -6,11 +6,12 @@ const displayStudentMarkListTable = (students) => {
 }
 
 const generateRank = (students) => {
-  return students
-    .filter((student) => student.isPassed)
+  const passedStudents = students.filter((student) => student.isPassed)
+  const failedStudents = students.filter((student) => !student.isPassed)
+  const rankedStudents = passedStudents
     .sort((a,b) => b.total - a.total)
     .map((student, index) => ({ ...student, rank: index + 1 }))
-    .concat(students.filter((student) => !student.isPassed))
+  return rankedStudents.concat(failedStudents)
 }
 
 const processMarkSheet = (student) => 
